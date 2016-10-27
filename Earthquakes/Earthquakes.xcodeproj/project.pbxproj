@@ -16,6 +16,7 @@
 		8E6535E61DC01D710078516A /* Earthquake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6535E51DC01D710078516A /* Earthquake.swift */; };
 		8E6535E81DC0348C0078516A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6535E71DC0348C0078516A /* NetworkManager.swift */; };
 		8E6535EA1DC035090078516A /* NetworkManager+Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6535E91DC035090078516A /* NetworkManager+Enumerations.swift */; };
+		F8F148DA1DC17C530080492A /* EarthquakeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F148D91DC17C530080492A /* EarthquakeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		8E6535E51DC01D710078516A /* Earthquake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Earthquake.swift; sourceTree = "<group>"; };
 		8E6535E71DC0348C0078516A /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8E6535E91DC035090078516A /* NetworkManager+Enumerations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkManager+Enumerations.swift"; sourceTree = "<group>"; };
+		F8F148D91DC17C530080492A /* EarthquakeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarthquakeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				8E6535D51DC018150078516A /* ViewController.swift */,
 				8E6535E51DC01D710078516A /* Earthquake.swift */,
 				8E6535D71DC018150078516A /* Main.storyboard */,
+				F8F148D91DC17C530080492A /* EarthquakeTableViewCell.swift */,
 				74070AF31DC170E100C53813 /* ViewController+TableView.swift */,
 				8E6535DA1DC018150078516A /* Assets.xcassets */,
 				8E6535DC1DC018150078516A /* LaunchScreen.storyboard */,
@@ -154,6 +157,7 @@
 				8E6535EA1DC035090078516A /* NetworkManager+Enumerations.swift in Sources */,
 				8E6535E61DC01D710078516A /* Earthquake.swift in Sources */,
 				8E6535D41DC018150078516A /* AppDelegate.swift in Sources */,
+				F8F148DA1DC17C530080492A /* EarthquakeTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
