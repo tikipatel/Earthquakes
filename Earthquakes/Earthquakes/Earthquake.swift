@@ -10,13 +10,13 @@ import Foundation
 
 class Earthquake {
     
-    let magnitude: Double = 0
-    let time: Date = Date()
-    let url: URL? = nil
-    let place: String = ""
-    let detail: URL? = nil
-    let longitude: Double = 0
-    let latitude: Double = 0
-    let depth: Double = 0
+    var magnitude: Double = 0
+    var time: Date = Date()
+    var url: URL? = nil
+    var place: String = ""
+    var detail: URL? = nil
+    var longitude: Double = 0
+    var latitude: Double = 0
+    var depth: Double = 0
 
 }

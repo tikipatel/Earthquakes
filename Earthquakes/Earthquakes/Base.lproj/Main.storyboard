@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Earthquakes-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Earthquakes" customModuleProvider="target" sceneMemberID="viewController">
@@ -83,11 +83,20 @@
                             <constraint firstItem="SvL-yU-eZn" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="xxS-fc-HG0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Je1-Bl-jUh"/>
+                    <navigationItem key="navigationItem" title="Earthquakes" id="Je1-Bl-jUh">
+                        <barButtonItem key="rightBarButtonItem" title="Filter" id="eJl-L0-xXC">
+                            <connections>
+                                <action selector="filterButtonPressed:" destination="BYZ-38-t0r" id="WTe-gT-8CD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="SvL-yU-eZn" id="ZQM-5v-mbI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1276" y="80.50974512743629"/>
+            <point key="canvasLocation" x="1663" y="95"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="n0k-1h-53E">
