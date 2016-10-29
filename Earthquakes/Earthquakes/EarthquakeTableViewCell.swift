@@ -15,6 +15,14 @@ class EarthquakeTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
+    var earthquake: Earthquake? {
+        didSet {
+            guard let earthquake = earthquake else { return }
+            placeLabel.text = earthquake.place
+            magnitudeLabel.text = String(earthquake.magnitude)
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,5 +33,7 @@ class EarthquakeTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
 
 }

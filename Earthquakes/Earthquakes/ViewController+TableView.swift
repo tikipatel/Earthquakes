@@ -25,8 +25,18 @@ extension ViewController: UITableViewDataSource { //space added for pratik
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! EarthquakeTableViewCell
+        cell.earthquake = filteredArray[indexPath.row]
         return cell
     }
 
+    
 
+}
+
+extension ViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 78
+    }
+    
 }
