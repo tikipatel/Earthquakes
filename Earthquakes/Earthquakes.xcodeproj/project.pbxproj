@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F9FF21E1DC4159F00506315 /* EarthquakeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9FF21D1DC4159F00506315 /* EarthquakeDetailViewController.swift */; };
+		2F9FF2201DC4211700506315 /* MapPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9FF21F1DC4211700506315 /* MapPin.swift */; };
 		74070AF41DC170E100C53813 /* ViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74070AF31DC170E100C53813 /* ViewController+TableView.swift */; };
 		8E6535D41DC018150078516A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6535D31DC018150078516A /* AppDelegate.swift */; };
 		8E6535D61DC018150078516A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6535D51DC018150078516A /* ViewController.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F9FF21D1DC4159F00506315 /* EarthquakeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarthquakeDetailViewController.swift; sourceTree = "<group>"; };
+		2F9FF21F1DC4211700506315 /* MapPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPin.swift; sourceTree = "<group>"; };
 		74070AF31DC170E100C53813 /* ViewController+TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+TableView.swift"; sourceTree = "<group>"; };
 		8E6535D01DC018150078516A /* Earthquakes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Earthquakes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E6535D31DC018150078516A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +74,8 @@
 				8E6535D51DC018150078516A /* ViewController.swift */,
 				8E6535E51DC01D710078516A /* Earthquake.swift */,
 				8E6535D71DC018150078516A /* Main.storyboard */,
+				2F9FF21D1DC4159F00506315 /* EarthquakeDetailViewController.swift */,
+				2F9FF21F1DC4211700506315 /* MapPin.swift */,
 				F8F148D91DC17C530080492A /* EarthquakeTableViewCell.swift */,
 				74070AF31DC170E100C53813 /* ViewController+TableView.swift */,
 				8E6535DA1DC018150078516A /* Assets.xcassets */,
@@ -154,7 +160,9 @@
 				8E6535E81DC0348C0078516A /* NetworkManager.swift in Sources */,
 				8E6535D61DC018150078516A /* ViewController.swift in Sources */,
 				74070AF41DC170E100C53813 /* ViewController+TableView.swift in Sources */,
+				2F9FF2201DC4211700506315 /* MapPin.swift in Sources */,
 				8E6535EA1DC035090078516A /* NetworkManager+Enumerations.swift in Sources */,
+				2F9FF21E1DC4159F00506315 /* EarthquakeDetailViewController.swift in Sources */,
 				8E6535E61DC01D710078516A /* Earthquake.swift in Sources */,
 				8E6535D41DC018150078516A /* AppDelegate.swift in Sources */,
 				F8F148DA1DC17C530080492A /* EarthquakeTableViewCell.swift in Sources */,
