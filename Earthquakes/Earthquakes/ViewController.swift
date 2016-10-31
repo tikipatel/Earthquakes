@@ -27,11 +27,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         title = "Earthquakes"
         
-        loadTestData()
-        
         // TODO:  hook into Earthquake Manager to get data.
         
-        
+        EarthquakeManager.sharedInstance.getEarthquake { earthquakes in
+            
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
 
