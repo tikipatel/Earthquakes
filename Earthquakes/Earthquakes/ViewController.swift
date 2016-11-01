@@ -29,7 +29,7 @@ class ViewController: UIViewController {
         
         // TODO:  hook into Earthquake Manager to get data.
         
-        EarthquakeManager.sharedInstance.getEarthquake { earthquakes in
+        EarthquakeManager.sharedInstance.getEarthquakes { earthquakes in
             
         }
         // Do any additional setup after loading the view, typically from a nib.

@@ -12,18 +12,19 @@ class EarthquakeManager {
     
     static let sharedInstance = EarthquakeManager()
     
-    private var _earthquake = [Earthquake]()
+    private var _earthquakes = [Earthquake]()
     
-    var earthquake: [Earthquake] {
-        return _earthquake
+    var earthquakes: [Earthquake] {
+        return _earthquakes
     }
     
-    func getEarthquake(completion: @escaping ([Earthquake]?) -> ()) {
+    func getEarthquakes(completion: @escaping ([Earthquake]?) -> ()) {
         NetworkManager.sharedInstance.get(endpoint: .all_day) { (result) in
             switch result {
-            case.error( _):
+            case .error( _):
                 print("error!")
-            case.success(let data):
+                completion(nil)
+            case .success(let data):
                 guard let data = data else {
                     completion(nil)
                     return
@@ -35,6 +36,8 @@ class EarthquakeManager {
                     }
                     
                     let features = jsonData["features"] as! [[String:Any]]
+                    var earthquakes = [Earthquake]()
+
                     for feature in features {
                         
                         let property = feature["properties"] as! [String:Any]
@@ -51,10 +54,15 @@ class EarthquakeManager {
                         earthquake.longitude = coordinates[0]
                         earthquake.latitude = coordinates[1]
                         earthquake.depth = coordinates[2]
-                        
+                        earthquakes.append(earthquake)
                     }
+                    
+                    self._earthquakes.append(contentsOf: earthquakes)
+                    completion(self.earthquakes)
+                    dump(self._earthquakes)
                 } catch (let error) {
                     dump(error)
+                    completion(nil)
                 }
             }
         }
