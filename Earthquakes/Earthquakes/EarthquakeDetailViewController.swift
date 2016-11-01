@@ -14,51 +14,73 @@ class EarthquakeDetailViewController: UIViewController {
     
     /// Outlets
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var locationTitle: UILabel!
     @IBOutlet weak var locationText: UILabel!
-    @IBOutlet weak var dateTimeTitle: UILabel!
     @IBOutlet weak var dateTimeText: UILabel!
-    @IBOutlet weak var magnitudeTitle: UILabel!
     @IBOutlet weak var magnitudeText: UILabel!
-    @IBOutlet weak var depthTitle: UILabel!
     @IBOutlet weak var depthText: UILabel!
     
     /// Variables
-    var howManyVibrations = 6
-    let gdaLat = 29.655141
-    let gdaLon = -82.422835
-    let placeTitle = "Gainesville Dev Academy"
-
+    var earthquake: Earthquake? {
+        didSet {
+            guard let earthquake = earthquake else { return }
+            howManyVibrations = Int(earthquake.magnitude)
+        }
+    }
+    var howManyVibrations = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = placeTitle
+        guard let earthquake = earthquake else {
+            
+            let alert = UIAlertController(title: "No Earthquake Set", message: "Something went wrong in setting the earthquake for the detail page... please go back.", preferredStyle: .alert)
+            let okayAction = UIAlertAction(title: "Okay :(", style: .default, handler: { (action) in
+                DispatchQueue.main.async {
+                    _ = self.navigationController?.popViewController(animated: true)
+                }
+            })
+            
+            alert.addAction(okayAction)
+            present(alert, animated: true, completion: nil)
+            return
+        }
         
-        mapView.setCenter(CLLocationCoordinate2D(latitude: gdaLat, longitude: gdaLon), animated: true)
-        mapView.camera.altitude = 800
+        title = earthquake.place
+        setupMap(for: earthquake)
+        setupLabels(for: earthquake)
+    }
+    
+    func setupMap(for earthquake: Earthquake) {
+        mapView.setCenter(CLLocationCoordinate2D(latitude: earthquake.latitude, longitude: earthquake.longitude), animated: true)
+        mapView.camera.altitude = 1000
         
-        let mapPin = MapPin(coordinate: CLLocationCoordinate2D(latitude: gdaLat, longitude: gdaLon), title: placeTitle, subtitle: nil)
+        let mapPin = MapPin(coordinate: CLLocationCoordinate2D(latitude: earthquake.latitude, longitude: earthquake.longitude), title: earthquake.place, subtitle: nil)
         mapView.addAnnotation(mapPin)
         mapView.selectAnnotation(mapPin, animated: true)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        rumble()
-        mapView.shake(count: Float(3 * howManyVibrations), for: 0.3 * Double(howManyVibrations), withTranslation: -15)
+    func setupLabels(for earthquake: Earthquake) {
+        
+        locationText.text = earthquake.place
+        magnitudeText.text = String(earthquake.magnitude)
+        depthText.text = String(earthquake.depth) + " km"
+        dateTimeText.text = EarthquakeDateFormatter.sharedInstance.fancyDateTimeString(from: earthquake.time)
     }
     
-    func rumble() {
-        AudioServicesPlaySystemSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate), { [weak self] in
-            self?.howManyVibrations -= 1
-            if (self?.howManyVibrations)! > 0 {
-                self?.rumble()
-            }
-        })
-    }
+        override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(animated)
+            rumble()
+            mapView.shake(count: Float(3 * howManyVibrations), for: 0.3 * Double(howManyVibrations), withTranslation: -15)
+        }
     
-    
-    
+        func rumble() {
+            AudioServicesPlaySystemSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate), { [weak self] in
+                self?.howManyVibrations -= 1
+                if (self?.howManyVibrations)! > 0 {
+                    self?.rumble()
+                }
+            })
+        }
 
 }
 

@@ -39,4 +39,9 @@ extension ViewController: UITableViewDelegate {
         return 78
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let earthquake = filteredArray[indexPath.row]
+        performSegue(withIdentifier: "showEarthquakeDetail", sender: earthquake)
+    }
+    
 }

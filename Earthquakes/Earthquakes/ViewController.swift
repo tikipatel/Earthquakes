@@ -95,7 +95,15 @@ class ViewController: UIViewController {
         present(alertController, animated: true) { 
         
         }
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let earthquake = sender as? Earthquake  {
+            if segue.identifier == "showEarthquakeDetail" {
+                guard let detailVC = segue.destination as? EarthquakeDetailViewController else { return }
+                detailVC.earthquake = earthquake
+            }
+        }
     }
 }
 
