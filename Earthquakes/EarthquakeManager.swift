@@ -47,7 +47,7 @@ class EarthquakeManager {
                         earthquake.time = Date(timeIntervalSince1970: Double(time/1000))
                         earthquake.url = property["url"] as? URL
                         earthquake.place = property["place"] as! String
-                        earthquake.detail = property["detail"] as? String
+                        earthquake.detail = property["detail"] as? URL
                         
                         let geometry = feature["geometry"] as! [String:Any]
                         let coordinates = geometry["coordinates"] as! [Double]
