@@ -30,7 +30,13 @@ class ViewController: UIViewController {
         // TODO:  hook into Earthquake Manager to get data.
         
         EarthquakeManager.sharedInstance.getEarthquakes { earthquakes in
-            
+            guard let earthquakes = earthquakes else {
+                return
+            }
+            self.earthquakes = earthquakes
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
         // Do any additional setup after loading the view, typically from a nib.
     }
