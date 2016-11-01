@@ -25,7 +25,7 @@ class NetworkManager{
     func get(endpoint: Endpoint, completion: @escaping (_ result: Result<Data>) -> ()) {
         
         let session = URLSession.shared
-        let endpointURL = URL(string: "\(baseURL)\(endpoint.rawValue)")!
+        let endpointURL = URL(string: "\(baseURL)")!
         let task = session.dataTask(with: endpointURL) { (data, response, error) in
             guard error == nil else {
                 completion(.error(NSError(domain: "com.myApp.networkErro", code: -100, userInfo: nil)))
