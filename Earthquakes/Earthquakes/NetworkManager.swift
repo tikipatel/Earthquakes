@@ -28,8 +28,7 @@ class NetworkManager{
         let endpointURL = URL(string: "\(baseURL)")!
         let task = session.dataTask(with: endpointURL) { (data, response, error) in
             guard error == nil else {
-                completion(.error(NSError(domain: "com.myApp.networkErro", code: -100, userInfo: nil)))
-                return
+                return completion(.error(NSError(domain: "com.myApp.networkErro", code: -100, userInfo: nil)))
             }
             // do not perform this if gaurd fails
             completion(.success(data))

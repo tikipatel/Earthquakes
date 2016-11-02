@@ -20,6 +20,8 @@ class EarthquakeTableViewCell: UITableViewCell {
             guard let earthquake = earthquake else { return }
             placeLabel.text = earthquake.place
             magnitudeLabel.text = String(earthquake.magnitude)
+            dateLabel.text = EarthquakeDateFormatter.sharedInstance.regularDateString(from: earthquake.time)
+            timeLabel.text = EarthquakeDateFormatter.sharedInstance.regularTimeString(from: earthquake.time)
         }
     }
     
@@ -33,6 +35,8 @@ class EarthquakeTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+
     
     
 

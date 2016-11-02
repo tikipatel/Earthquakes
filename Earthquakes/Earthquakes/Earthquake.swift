@@ -18,4 +18,5 @@ class Earthquake {
     var longitude: Double = 0
     var latitude: Double = 0
     var depth: Double = 0
+    
 }

@@ -26,36 +26,35 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Earthquakes"
-        
-        // TODO:  hook into Earthquake Manager to get data.
-        
-        EarthquakeManager.sharedInstance.getEarthquakes { earthquakes in
-            guard let earthquakes = earthquakes else {
-                return
-            }
-            self.earthquakes = earthquakes
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-        // Do any additional setup after loading the view, typically from a nib.
+        updateEarthquakes()
     }
 
+    func updateEarthquakes() {
+        EarthquakeManager.sharedInstance.earthquakes(filteredBy: currentFilter) { result in
+            
+            switch result {
+            case .error(let error):
+                let alert = UIAlertController(title: "Could not get earthquakes!", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                let okayAction = UIAlertAction(title: "Okay :(", style: .default, handler: { (action) in
+                })
+                alert.addAction(okayAction)
+                self.present(alert, animated: true, completion: nil)
+            case .success(let earthquakes):
+                guard let earthquakes = earthquakes else {
+                    return
+                }
+                self.earthquakes = earthquakes
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func loadTestData() {
-        for i in 1...10 {
-            let earthquake = Earthquake()
-            earthquake.place = "\(i)"
-            earthquake.magnitude = Double(i)
-            earthquakes.append(earthquake)
-        }
-
-    }
-
 
     @IBAction func filterButtonPressed(_ sender: AnyObject) {
         
@@ -64,26 +63,26 @@ class ViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Reset Filter", style: .cancel) { (action) in
             print("Reset filter pressed.")
             self.currentFilter = .none
-            self.tableView.reloadData()
+            self.updateEarthquakes()
             
         }
         
         let greaterThan2Action = UIAlertAction(title: ">2", style: .default) { (action) in
             print(">2 pressed.")
             self.currentFilter = .gt2
-            self.tableView.reloadData()
+            self.updateEarthquakes()
         }
         
         let greaterThan4Action = UIAlertAction(title: ">4", style: .default) { (action) in
             print(">4 pressed.")
             self.currentFilter = .gt4
-            self.tableView.reloadData()
+            self.updateEarthquakes()
         }
         
         let greaterThan6Action = UIAlertAction(title: ">6", style: .default) { (action) in
             print(">6 pressed.")
             self.currentFilter = .gt6
-            self.tableView.reloadData()
+            self.updateEarthquakes()
         }
         
         
@@ -95,7 +94,15 @@ class ViewController: UIViewController {
         present(alertController, animated: true) { 
         
         }
-        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let earthquake = sender as? Earthquake  {
+            if segue.identifier == "showEarthquakeDetail" {
+                guard let detailVC = segue.destination as? EarthquakeDetailViewController else { return }
+                detailVC.earthquake = earthquake
+            }
+        }
     }
 }
 
