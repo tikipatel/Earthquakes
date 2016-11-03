@@ -14,8 +14,11 @@ class EarthquakeManager {
     
     private var _earthquakes = [Earthquake]()
     
+    private var timeOfLastNetworkCall = Date()
+    
     func earthquakes(filteredBy filter: MagFilter, completion: @escaping (Result<[Earthquake]>) -> ()) {
-        if self._earthquakes.count == 0 {
+        if self._earthquakes.count == 0 || timeOfLastNetworkCall.timeIntervalSince(Date()) < -600 {
+            self.timeOfLastNetworkCall = Date()
             getEarthquakes { result in
                 switch result {
                 case .error(let error):
@@ -84,9 +87,7 @@ class EarthquakeManager {
                     }
                     self._earthquakes.append(contentsOf: earthquakes)
                     completion(.success(self._earthquakes))
-                    dump(self._earthquakes)
                 } catch (let error) {
-                    dump(error)
                     completion(.error(error))
                 }
             }
