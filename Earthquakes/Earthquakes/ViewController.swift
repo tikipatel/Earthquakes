@@ -23,15 +23,19 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    let refreshContol = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Earthquakes"
+        refreshContol.addTarget(self, action: #selector(updateEarthquakes), for: .valueChanged)
+        tableView.addSubview(refreshContol)
         updateEarthquakes()
     }
 
     func updateEarthquakes() {
         EarthquakeManager.sharedInstance.earthquakes(filteredBy: currentFilter) { result in
-            
+            DispatchQueue.main.async { self.refreshContol.endRefreshing() }
             switch result {
             case .error(let error):
                 let alert = UIAlertController(title: "Could not get earthquakes!", message: "\(error.localizedDescription)", preferredStyle: .alert)
@@ -44,9 +48,7 @@ class ViewController: UIViewController {
                     return
                 }
                 self.earthquakes = earthquakes
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+                DispatchQueue.main.async { self.tableView.reloadData() }
             }
 
         }
